@@ -18,6 +18,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 public class MainActivity extends AppCompatActivity {
 
     TextView tv;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +26,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tv = (TextView) findViewById(R.id.hello);
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
 
         PrimaryDrawerItem home = new PrimaryDrawerItem().withName(R.string.drawer_item_home);
         SecondaryDrawerItem menu_1 = new SecondaryDrawerItem().withName(R.string.menu_1);
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         Drawer result = new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onItemClick(View view, int i, IDrawerItem iDrawerItem) {
                         tv.setText("SELECT:" + i);
+                        toolbar.setTitle("SELECT:" + i);
                         return false;
                     }
                 })
